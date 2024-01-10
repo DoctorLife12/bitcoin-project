@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: services-ingress
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+    - host: aks-bitcoin.55aa13f47c9b4135ad8c.eastus.aksapp.io
+      http:
+        paths:
+          - path: /ServiceA
+            pathType: Prefix
+            backend:
+              service:
+                name: service-a-service
+                port:
+                  number: 80  # Port within the container where ServiceA is running
+          - path: /ServiceB  # Route incoming traffic to /serviceB to ServiceB
+            pathType: Prefix
+            backend:
+              service:
+                name: service-b-service
+                port:
+                  number: 80

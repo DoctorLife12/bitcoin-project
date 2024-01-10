@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-b-service
+spec:
+  type: ClusterIP
+  selector:
+    app: serviceB
+  ports:
+    - protocol: TCP
+      port: 80  # Exposed external port for accessing ServiceB
+      targetPort: 80  
